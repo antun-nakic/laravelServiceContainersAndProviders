@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlacanjeController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/welcome', 'welcome');
+
 Route::get('/placanje', [PlacanjeController::class, 'show']);
+//Route::get('/placanje', 'App\Http\Controllers\PlacanjeController@show');
+
+Route::get('/users', function (Request $request) {
+    return request()->ime;
+});
+
+Route::redirect('/users', '/');
+
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
+Route::any('/greeting', function () {
+    return 'Dobar dan svijete!';
+});
